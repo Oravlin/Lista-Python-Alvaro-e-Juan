@@ -29,8 +29,6 @@ def mediaSala():
 
 # loop para entrada de dados
 while qtdAlunos < 40:
-
-
     try:
         nomeAluno = input("Digite seu nome (digite 0 para cancelar): ")
         if nomeAluno == '0':
@@ -49,6 +47,18 @@ while qtdAlunos < 40:
         print("Digite uma nota válida!")
     except TypeError:
         print("Digite valores númericos!")
+        
+    if(notaAluno > notaMaior):
+        alunoMaior = nomeAluno
+        notaMaior = notaAluno
+    elif(notaAluno < notaMenor):
+        alunoMenor = nomeAluno
+        notaMenor = notaAluno
+    if (notaAluno == notaMaior and not nomeAluno == alunoMaior):
+        alunoMaior = f"{alunoMaior}, {nomeAluno}"
+    elif(notaAluno == notaMenor and not nomeAluno == alunoMenor):
+        alunoMenor = f"{alunoMenor}, {nomeAluno}"
+        
     qtdAlunos += 1
     aluno = {"nome": nomeAluno,
             "idade": idadeAluno,
@@ -60,28 +70,15 @@ while qtdAlunos < 40:
 #loop para mostrar os alunos
 print(f"Quantidade de alunos: {len(alunosTotal)}")
 for pessoa in alunosTotal:
-    nomeEstudante = pessoa['nome']
     situacaoEstudante = pessoa['classificacao']
-    if(pessoa['nota'] > notaMaior):
-        alunoMaior = pessoa['nome']
-        notaMaior = pessoa['nota']
-    elif(pessoa['nota'] < notaMenor):
-        alunoMenor = pessoa['nome']
-        notaMenor = pessoa['nota']
-    elif (pessoa['nota'] == notaMaior):
-        alunoMaior = f"{alunoMaior}, {pessoa['nome']}"
-    elif(pessoa['nota'] == notaMenor):
-        alunoMenor = f"{alunoMenor}, {pessoa['nome']}"
-
     if (situacaoEstudante == 'Aprovado'):
         aprovados += 1
     elif (situacaoEstudante == 'Reprovado'):
         reprovados += 1
     else:
         recuperacao += 1
-    print(f"Nome: {nomeEstudante}\nSituação: {situacaoEstudante}\n")
-
+    print(f"Nome: {pessoa["nome"]}\nSituação: {situacaoEstudante}\n")
 
 print(f"Aprovados: {aprovados}\nReprovados: {reprovados}\nEm recuperação: {recuperacao}")
 print(f"media da sala:{mediaSala():.2f}")
-print(f"Aluno(s) com maior nota: {alunoMaior}\nSua(s) nota(s): {notaMaior}\nAluno(s) com menor notas: {alunoMenor}\nSua(s) nota(s): {notaMenor}")
+print(f"Aluno(s) com maior(es) nota(s): {alunoMaior}\nSua(s) nota(s): {notaMaior}\nAluno(s) com menor(es) nota(s): {alunoMenor}\nSua(s) nota(s): {notaMenor}")
