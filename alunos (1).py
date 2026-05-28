@@ -9,7 +9,6 @@ alunoMaior = ""
 alunoMenor = ""
 continuar = "s"
 
-
 def classificarAluno(nota):
     resultado = ""
     if nota >= 7:
@@ -19,7 +18,6 @@ def classificarAluno(nota):
     elif nota < 5:
         resultado = "Reprovado"
     return resultado
-
 
 def mediaSala():
     totalNotas = 0
@@ -77,8 +75,6 @@ while continuar == "s":
             else:
                 print("Digite 's' ou 'n' apenas! \n") 
                 continue
-
-
 # loop para mostrar os alunos
 print(f"Quantidade de alunos: {len(alunosTotal)}")
 for pessoa in alunosTotal:
